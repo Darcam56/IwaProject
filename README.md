@@ -4,7 +4,7 @@ This project is the final Project of IWA courses.
 
 ## Descritpion
 
-This web app is think as [Weezevent Website](https://weezevent.com/en-gb/)
+This web app is think as [Weezevent website](https://weezevent.com/en-gb/)
 This is an app uses by Festival's owner to make an online market and also by Spectators to by multiple Festivals' tickets on the same site.
 
 
