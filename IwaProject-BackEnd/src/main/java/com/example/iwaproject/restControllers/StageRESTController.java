@@ -64,7 +64,6 @@ public class StageRESTController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Stage> delStage(@PathVariable("id") long id){
-        //TODO Doutes sur la fonction
         Stage stage = stageRepository.findById(id);
         if (stage == null){
             System.out.println("Stage Not Found !!!");
