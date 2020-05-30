@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -54,15 +57,14 @@ public class ConcertRESTController {
     public ResponseEntity<Concert> addBandToConcert(@PathVariable("id") long id, @PathVariable("bandId") long bandId){
         Concert concert = concertRepository.findById(id);
         Band band = (Band) userRepository.findById(bandId);
-        for (Concert con: band.getConcerts()){
-            if(con.getStart().toLocalDate().equals(concert.getStart().toLocalDate())){
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
+        if (bandIsFree(concert.getStart(), band)){
+            concert.setBand(band);
+            concertRepository.save(concert);
+            userRepository.save(band);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }else{
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        concert.setBand(band);
-        concertRepository.save(concert);
-        userRepository.save(band);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
@@ -95,12 +97,36 @@ public class ConcertRESTController {
             System.out.println("Concert Not Found !!!");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        partialUpdate(concert, updates);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        if (partialUpdate(concert, updates)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else{
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 
-    private void partialUpdate(Concert concert, Map<String, Object> updates) {
-        //TODO
+    private boolean partialUpdate(Concert concert, Map<String, Object> updates) {
+        if(updates.containsKey("start")){
+            LocalDateTime newDate = LocalDateTime.parse((String) updates.get("start"), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+            if (bandIsFree(newDate, concert.getBand())){
+                concert.setStart(newDate);
+            }else{
+                return false;
+            }
+        }if(updates.containsKey("duration")){
+            LocalTime newDuration = LocalTime.parse((String) updates.get("duration"), DateTimeFormatter.ofPattern("HH:mm"));
+            concert.setDuration(newDuration);
+        }
         concertRepository.save(concert);
+        return true;
+    }
+
+    private boolean bandIsFree(LocalDateTime newDate, Band band) {
+        if (band == null) { return false; }
+        for (Concert con: band.getConcerts()){
+            if(con.getStart().toLocalDate().equals(newDate.toLocalDate())){
+                return false;
+            }
+        }
+        return true;
     }
 }

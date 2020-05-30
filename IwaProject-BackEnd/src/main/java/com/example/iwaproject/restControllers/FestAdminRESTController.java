@@ -95,7 +95,7 @@ public class FestAdminRESTController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PatchMapping("/{id}")
+    /*@PatchMapping("/{id}")
     public ResponseEntity<FestAdmin> updatePartOfFestAdmin(@RequestBody Map<String, Object> updates, @PathVariable("id") long id){
         FestAdmin admin = (FestAdmin) userRepository.findById(id);
         if (admin == null){
@@ -111,5 +111,5 @@ public class FestAdminRESTController {
             admin.setUsername((String) updates.get("username"));
         }
         userRepository.save(admin);
-    }
+    }*/
 }
