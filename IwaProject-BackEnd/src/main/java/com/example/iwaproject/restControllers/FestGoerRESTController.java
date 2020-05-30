@@ -106,22 +106,6 @@ public class FestGoerRESTController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<FestGoer> updateFestGoer(@RequestBody FestGoer spec, @PathVariable("id") long id){
-        spec.setId(id); //Not working because of Hibernate
-        userRepository.save(spec);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PutMapping
-    public ResponseEntity<FestGoer> updateFestGoer(@RequestBody List<FestGoer> specs){
-        userRepository.deleteAll();
-        for (FestGoer spec : specs) {
-            userRepository.save(spec);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<FestGoer> updatePartOfFestGoer(@RequestBody Map<String, Object> updates, @PathVariable("id") long id){
         FestGoer spec = (FestGoer) userRepository.findById(id);

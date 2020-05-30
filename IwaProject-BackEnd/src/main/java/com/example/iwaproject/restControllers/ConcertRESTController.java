@@ -89,22 +89,6 @@ public class ConcertRESTController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Concert> updateConcert(@RequestBody Concert concert, @PathVariable("id") long id){
-        concert.setId(id); //Not working because of Hibernate
-        concertRepository.save(concert);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PutMapping
-    public ResponseEntity<Concert> updateConcert(@RequestBody List<Concert> concerts){
-        concertRepository.deleteAll();
-        for (Concert concert : concerts) {
-            concertRepository.save(concert);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<Concert> updatePartOfConcert(@RequestBody Map<String, Object> updates, @PathVariable("id") long id){
         Concert concert = concertRepository.findById(id);

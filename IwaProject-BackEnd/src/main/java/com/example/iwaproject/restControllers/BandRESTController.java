@@ -84,22 +84,6 @@ public class BandRESTController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Band> updateBand(@RequestBody Band band, @PathVariable("id") long id){
-        band.setId(id); //Not working because of Hibernate
-        userRepository.save(band);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PutMapping
-    public ResponseEntity<Band> updateBand(@RequestBody List<Band> bands){
-        userRepository.deleteAll();
-        for (Band band : bands) {
-            userRepository.save(band);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<Band> updatePartOfBand(@RequestBody Map<String, Object> updates, @PathVariable("id") long id){
         Band band = (Band) userRepository.findById(id);

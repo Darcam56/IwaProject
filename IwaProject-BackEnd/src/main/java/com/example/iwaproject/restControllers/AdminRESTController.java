@@ -68,22 +68,6 @@ public class AdminRESTController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateAdmin(@RequestBody User admin, @PathVariable("id") long id){
-        admin.setId(id); //Not working because of Hibernate
-        userRepository.save(admin);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PutMapping
-    public ResponseEntity<User> updateAdmin(@RequestBody List<User> admins){
-        userRepository.deleteAll();
-        for (User admin : admins) {
-            userRepository.save(admin);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<User> updatePartOfAdmin(@RequestBody Map<String, Object> updates, @PathVariable("id") long id){
         User admin = userRepository.findById(id);

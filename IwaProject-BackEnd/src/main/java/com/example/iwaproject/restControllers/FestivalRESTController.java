@@ -87,22 +87,6 @@ public class FestivalRESTController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Festival> updateFestival(@RequestBody Festival festival, @PathVariable("id") long id){
-        festival.setId(id); //Not working because of Hibernate
-        festivalRepository.save(festival);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PutMapping
-    public ResponseEntity<Festival> updateFestival(@RequestBody List<Festival> festivals){
-        festivalRepository.deleteAll();
-        for (Festival festival : festivals) {
-            festivalRepository.save(festival);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<Festival> updatePartOfFestival(@RequestBody Map<String, Object> updates, @PathVariable("id") long id){
         Festival festival = festivalRepository.findById(id);
