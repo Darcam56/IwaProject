@@ -118,9 +118,11 @@ public class FestGoerRESTController {
     }
 
     private void partialUpdate(FestGoer spec, Map<String, Object> updates) {
-        //TODO
-        if(updates.containsKey("username")){
-            spec.setUsername((String) updates.get("username"));
+        if(updates.containsKey("fistname")){
+            spec.setFistname((String) updates.get("fistname"));
+        }
+        if(updates.containsKey("lastname")){
+            spec.setLastname((String) updates.get("lastname"));
         }
         userRepository.save(spec);
     }
