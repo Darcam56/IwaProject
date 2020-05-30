@@ -102,6 +102,9 @@ public class FestivalRESTController {
         if(updates.containsKey("festivalName")){
             festival.setFestivalName((String) updates.get("festivalName"));
         }
+        if(updates.containsKey("description")){
+            festival.setDescription((String) updates.get("description"));
+        }
         festivalRepository.save(festival);
     }
 }
