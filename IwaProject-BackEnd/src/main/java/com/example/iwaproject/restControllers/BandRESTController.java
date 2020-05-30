@@ -3,7 +3,6 @@ package com.example.iwaproject.restControllers;
 import com.example.iwaproject.model.*;
 import com.example.iwaproject.repositories.ConcertRepository;
 import com.example.iwaproject.repositories.RoleRepository;
-import com.example.iwaproject.repositories.StageRepository;
 import com.example.iwaproject.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -96,8 +95,14 @@ public class BandRESTController {
 
     private void partialUpdate(Band band, Map<String, Object> updates) {
         //TODO
-        if(updates.containsKey("username")){
-            band.setUsername((String) updates.get("username"));
+        if(updates.containsKey("name")){
+            band.setName((String) updates.get("name"));
+        }
+        if(updates.containsKey("musicType")){
+            band.setMusicType((String) updates.get("musicType"));
+        }
+        if(updates.containsKey("description")){
+            band.setDescription((String) updates.get("description"));
         }
         userRepository.save(band);
     }
