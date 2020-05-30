@@ -58,7 +58,6 @@ public class FestivalRESTController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Festival> delFestival(@PathVariable("id") long id){
-        //TODO Doutes sur la fonction
         Festival festival = festivalRepository.findById(id);
         if (festival == null){
             System.out.println("Festival Not Found !!!");

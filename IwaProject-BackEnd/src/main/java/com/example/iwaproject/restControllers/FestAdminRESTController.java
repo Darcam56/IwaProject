@@ -73,7 +73,6 @@ public class FestAdminRESTController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<FestAdmin> delFestAdmin(@PathVariable("id") long id){
-        //TODO Doutes sur la fonction
         FestAdmin admin = (FestAdmin) userRepository.findById(id);
         if (admin == null){
             System.out.println("FestAdmin Not Found !!!");

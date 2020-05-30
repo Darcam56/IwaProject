@@ -67,7 +67,6 @@ public class ConcertRESTController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Concert> delConcert(@PathVariable("id") long id){
-        //TODO Doutes sur la fonction
         Concert concert = concertRepository.findById(id);
         if (concert == null){
             System.out.println("Concert Not Found !!!");

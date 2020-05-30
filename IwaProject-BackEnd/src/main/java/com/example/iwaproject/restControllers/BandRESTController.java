@@ -59,7 +59,6 @@ public class BandRESTController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Band> delBand(@PathVariable("id") long id){
-        //TODO Doutes sur la fonction
         Band band = (Band) userRepository.findById(id);
         if (band == null){
             System.out.println("Band Not Found !!!");
