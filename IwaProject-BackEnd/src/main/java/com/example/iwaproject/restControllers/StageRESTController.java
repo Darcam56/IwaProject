@@ -90,7 +90,6 @@ public class StageRESTController {
     }
 
     private void partialUpdate(Stage stage, Map<String, Object> updates) {
-        //TODO
         if(updates.containsKey("name")){
             stage.setName((String) updates.get("name"));
         }
