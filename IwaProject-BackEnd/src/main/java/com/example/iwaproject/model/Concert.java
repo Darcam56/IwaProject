@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class Concert {
@@ -17,7 +18,9 @@ public class Concert {
 	@Column(columnDefinition = "TIMESTAMP")
 	private LocalDateTime start;
 
-	private double duration;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+	@Column(columnDefinition = "TIME")
+	private LocalTime duration;
 
 	@ManyToOne
 	private Band band;
@@ -27,7 +30,7 @@ public class Concert {
 
 	public Concert(){}
 	
-	public Concert(LocalDateTime start, double duration, Band band) {
+	public Concert(LocalDateTime start, LocalTime duration, Band band) {
 		this.start = start;
 		this.duration = duration;
 		this.band = band;
@@ -49,11 +52,11 @@ public class Concert {
 		this.start = start;
 	}
 
-	public double getDuration() {
+	public LocalTime getDuration() {
 		return duration;
 	}
 
-	public void setDuration(double duration) {
+	public void setDuration(LocalTime duration) {
 		this.duration = duration;
 	}
 
