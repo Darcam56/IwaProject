@@ -94,7 +94,6 @@ public class BandRESTController {
     }
 
     private void partialUpdate(Band band, Map<String, Object> updates) {
-        //TODO
         if(updates.containsKey("name")){
             band.setName((String) updates.get("name"));
         }

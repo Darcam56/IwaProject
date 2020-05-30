@@ -2,7 +2,6 @@ package com.example.iwaproject.restControllers;
 
 import com.example.iwaproject.model.Band;
 import com.example.iwaproject.model.Concert;
-import com.example.iwaproject.model.FestAdmin;
 import com.example.iwaproject.model.Stage;
 import com.example.iwaproject.repositories.ConcertRepository;
 import com.example.iwaproject.repositories.UserRepository;
