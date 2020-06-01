@@ -47,11 +47,6 @@ public class BandRESTController {
 
     @PostMapping
     public Band addBand(@RequestBody Band band){
-        /*TODO enlever le role */
-        Role rBand = roleRepository.findByName(RoleName.ROLE_BAND)
-                .orElseThrow(() -> new RuntimeException("ROLE_BAND " + RoleName.ROLE_BAND + " not found"));
-        Set<Role> roles = new HashSet<>(); roles.add(rBand); band.setRoles(roles);
-
         userRepository.save(band);
         return band;
     }

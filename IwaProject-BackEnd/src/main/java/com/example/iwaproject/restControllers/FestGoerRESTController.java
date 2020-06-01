@@ -53,11 +53,6 @@ public class FestGoerRESTController {
 
     @PostMapping
     public FestGoer addFestGoer(@RequestBody FestGoer spec){
-        /*TODO enlever le role */
-        Role role = roleRepository.findByName(RoleName.ROLE_SPEC)
-                .orElseThrow(() -> new RuntimeException("ROLE_SPEC " + RoleName.ROLE_SPEC + " not found"));
-        Set<Role> roles = new HashSet<>(); roles.add(role); spec.setRoles(roles);
-
         userRepository.save(spec);
         return spec;
     }

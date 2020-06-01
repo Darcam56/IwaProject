@@ -53,11 +53,6 @@ public class FestAdminRESTController {
 
     @PostMapping
     public FestAdmin addFestAdmin(@RequestBody FestAdmin admin){
-        /*TODO enlever le role */
-        Role role = roleRepository.findByName(RoleName.ROLE_ORG)
-                .orElseThrow(() -> new RuntimeException("ROLE_ORG " + RoleName.ROLE_ORG + " not found"));
-        Set<Role> roles = new HashSet<>(); roles.add(role); admin.setRoles(roles);
-
         userRepository.save(admin);
         return admin;
     }

@@ -41,12 +41,6 @@ public class AdminRESTController {
 
     @PostMapping
     public User addAdmin(@RequestBody User admin){
-        /*TODO enlever le role */
-        Role rAdmin = roleRepository.findByName(RoleName.ROLE_ADMIN)
-                .orElseThrow(() -> new RuntimeException("ROLE_ADMIN " + RoleName.ROLE_ADMIN + " not found"));
-        Set<Role> roles = new HashSet<>(); roles.add(rAdmin); admin.setRoles(roles);
-
-
         userRepository.save(admin);
         return admin;
     }
