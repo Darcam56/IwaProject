@@ -4,6 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,14 +39,13 @@ public class FestGoer extends User{
 	 * @param password the password
 	 * @param fistname the fistname
 	 * @param lastname the lastname
-	 * @param festivals the festivals
 	 */
 	public FestGoer(String username, String password, 
-					String fistname, String lastname, List<Festival> festivals) {
+					String fistname, String lastname) {
 		super(username, password);
 		this.fistname = fistname;
 		this.lastname = lastname;
-		this.festivals = festivals;
+		this.festivals = new ArrayList<>();
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package com.example.iwaproject.restControllers;
 
+import com.example.iwaproject.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,6 @@ import com.example.iwaproject.message.request.LoginForm;
 import com.example.iwaproject.message.request.SignUpForm;
 import com.example.iwaproject.message.response.JwtResponse;
 import com.example.iwaproject.message.response.ResponseMessage;
-import com.example.iwaproject.model.Role;
-import com.example.iwaproject.model.RoleName;
-import com.example.iwaproject.model.User;
 import com.example.iwaproject.repositories.RoleRepository;
 import com.example.iwaproject.repositories.UserRepository;
 import com.example.iwaproject.security.jwt.JwtProvider;
@@ -25,8 +23,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
-@RequestMapping("/restApi/auth")
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@RequestMapping("/auth")
 public class AuthRESTController {
 
     @Autowired
@@ -57,16 +55,54 @@ public class AuthRESTController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
+    public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignUpForm signUpRequest) {
 
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken."), HttpStatus.BAD_REQUEST);
         }
 
-        // Create user account
         User user = new User(signUpRequest.getUsername(), passwordEncoder.encode(signUpRequest.getPassword()));
+        Set<String> strRoles = signUpRequest.getRole();
+        user.setRoles(getRoles(strRoles));
+        userRepository.save(user);
+
+        return new ResponseEntity<>(new ResponseMessage("User registered successfully."), HttpStatus.OK);
+    }
+
+    @PostMapping("/signup/spec")
+    public ResponseEntity<?> registerFestGoer(@Valid @RequestBody SignUpForm signUpRequest) {
+
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken."), HttpStatus.BAD_REQUEST);
+        }
+
+        FestGoer user =  new FestGoer(signUpRequest.getUsername(), passwordEncoder.encode(signUpRequest.getPassword()),
+                                      signUpRequest.getFirstname(), signUpRequest.getLastname());
+        Set<String> strRoles = signUpRequest.getRole();
+        user.setRoles(getRoles(strRoles));
+        userRepository.save(user);
+
+        return new ResponseEntity<>(new ResponseMessage("User registered successfully."), HttpStatus.OK);
+    }
+
+    @PostMapping("/signup/band")
+    public ResponseEntity<?> registerBand(@Valid @RequestBody SignUpForm signUpRequest) {
+
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken."), HttpStatus.BAD_REQUEST);
+        }
+
+        Band user =  new Band(signUpRequest.getUsername(), passwordEncoder.encode(signUpRequest.getPassword()),
+                              signUpRequest.getName(), signUpRequest.getMusicType(), signUpRequest.getDescription());
 
         Set<String> strRoles = signUpRequest.getRole();
+        user.setRoles(getRoles(strRoles));
+        userRepository.save(user);
+
+        return new ResponseEntity<>(new ResponseMessage("User registered successfully."), HttpStatus.OK);
+    }
+
+    private Set<Role> getRoles(Set<String> strRoles){
         Set<Role> roles = new HashSet<>();
 
         strRoles.forEach(role -> {
@@ -93,12 +129,7 @@ public class AuthRESTController {
                     break;
             }
         });
-
-        user.setRoles(roles);
-        userRepository.save(user);
-
-        return new ResponseEntity<>(new ResponseMessage("User registered successfully."), HttpStatus.OK);
-
+        return roles;
     }
 
 }
