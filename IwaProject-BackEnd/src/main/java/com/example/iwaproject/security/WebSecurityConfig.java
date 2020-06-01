@@ -52,13 +52,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //TODO Change Authorisations
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/restApi/auth/**").permitAll()
-                .antMatchers("/restApi/contacts/**").hasAnyRole("ADMIN","USER") // or for one role: hasRole("ADMIN")
-                .antMatchers("/restApi/exampleSecurity/user").hasRole("USER")
-                .antMatchers("/restApi/exampleSecurity/admin").hasRole("ADMIN")
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/admins/**").hasRole("ADMIN")
+                .antMatchers("/bands/**").hasAnyRole("ADMIN","BAND")
+                .antMatchers("/concerts/**").hasAnyRole("ADMIN","ORG")
+                .antMatchers("/stages/**").hasAnyRole("ADMIN","ORG")
+                .antMatchers("/festivals/**").hasAnyRole("ADMIN","ORG")
+                .antMatchers("/festAdmins/**").hasAnyRole("ADMIN", "ORG")
+                .antMatchers("/festGoers/**").hasAnyRole("ADMIN", "SPEC")
 				.anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
