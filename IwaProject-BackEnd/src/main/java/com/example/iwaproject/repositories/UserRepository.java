@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findByRolesContaining(Role role); //Admin
     List<User> findByRolesContainingAndRolesIsNotContaining(Role role1, Role role2); //not admin
+    Optional<User> findByUsername(String username);
     Boolean existsByUsername(String username);
     User findById(long id);
     void deleteById(long id);
