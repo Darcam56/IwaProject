@@ -1,4 +1,4 @@
-export class SignupInfo {
+export class SignupInfoFestAdmin {
 
   username: string;
   role: string[];
@@ -6,7 +6,7 @@ export class SignupInfo {
 
   constructor(username: string, password: string) {
     this.username = username;
-    this.role = ['user'];
+    this.role = ['org'];
     this.password = password;
   }
 }

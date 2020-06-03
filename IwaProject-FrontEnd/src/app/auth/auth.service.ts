@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginInfo} from './login-info';
 import {Observable} from 'rxjs';
 import {JwtResponse} from './jwt-response';
-import {SignupInfo} from './signup-info';
+import {SignupInfoFestAdmin} from './signup-info-festAdmin';
+import {SignupInfoBand} from './signup-info-band';
 
 const httpOptions = {
   headers: new HttpHeaders({'COntent-Type': 'application/json'})
@@ -23,7 +24,7 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
 
-  signUpBand(info: SignupInfo): Observable<string> {
+  signUpBand(info: SignupInfoBand): Observable<string> {
     return this.http.post<string>(this.signupUrl += '/band', info, httpOptions);
   }
 
@@ -31,7 +32,7 @@ export class AuthService {
     return this.http.post<string>(this.signupUrl += '/spec', info, httpOptions);
   }
 
-  signUpOrg(info: SignupInfo): Observable<string> {
+  signUpOrg(info: SignupInfoFestAdmin): Observable<string> {
     return this.http.post<string>(this.signupUrl += '/org', info, httpOptions);
   }
 }
