@@ -51,12 +51,6 @@ public class FestGoerRESTController {
         return festGoer.getFestivals();
     }
 
-    @PostMapping
-    public FestGoer addFestGoer(@RequestBody FestGoer spec){
-        userRepository.save(spec);
-        return spec;
-    }
-
     @PostMapping("/{id}/festivals/{festId}")
     public ResponseEntity<FestGoer> addFestivalFromFestGoer(@PathVariable("id") long id, @PathVariable("festId") long festId){
         FestGoer festGoer = (FestGoer) userRepository.findById(id);

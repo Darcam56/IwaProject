@@ -69,6 +69,21 @@ public class AuthRESTController {
         return new ResponseEntity<>(new ResponseMessage("User registered successfully."), HttpStatus.OK);
     }
 
+    @PostMapping("/signup/org")
+    public ResponseEntity<?> registerFestAdmin(@Valid @RequestBody SignUpForm signUpRequest) {
+
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken."), HttpStatus.BAD_REQUEST);
+        }
+
+        FestAdmin user = new FestAdmin(signUpRequest.getUsername(), passwordEncoder.encode(signUpRequest.getPassword()));
+        Set<String> strRoles = signUpRequest.getRole();
+        user.setRoles(getRoles(strRoles));
+        userRepository.save(user);
+
+        return new ResponseEntity<>(new ResponseMessage("User registered successfully."), HttpStatus.OK);
+    }
+
     @PostMapping("/signup/spec")
     public ResponseEntity<?> registerFestGoer(@Valid @RequestBody SignUpForm signUpRequest) {
 

@@ -51,12 +51,6 @@ public class FestAdminRESTController {
         return festivalRepository.findFestivalByFestAdminContaining(festAdmin);
     }
 
-    @PostMapping
-    public FestAdmin addFestAdmin(@RequestBody FestAdmin admin){
-        userRepository.save(admin);
-        return admin;
-    }
-
     @PostMapping("/{id}/festivals")
     public Festival addFestivalFromFestAdmin(@RequestBody Festival fest, @PathVariable("id") long id){
         FestAdmin festAdmin = (FestAdmin) userRepository.findById(id);

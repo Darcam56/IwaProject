@@ -45,12 +45,6 @@ public class BandRESTController {
         return (Band) userRepository.findById(id);
     }
 
-    @PostMapping
-    public Band addBand(@RequestBody Band band){
-        userRepository.save(band);
-        return band;
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Band> delBand(@PathVariable("id") long id){
         Band band = (Band) userRepository.findById(id);

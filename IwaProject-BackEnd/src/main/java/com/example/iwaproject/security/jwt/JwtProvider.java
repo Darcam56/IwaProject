@@ -11,7 +11,7 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    @Value("${com.example.iwaproject.jwtSecret}")
+    @Value("${com.example.iwaproject.jwtSecretKey}")
     private String jwtSecret;
 
     @Value("${com.example.iwaproject.jwtExpiration}")

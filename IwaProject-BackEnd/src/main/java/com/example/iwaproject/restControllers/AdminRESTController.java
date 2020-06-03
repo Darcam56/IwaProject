@@ -39,12 +39,6 @@ public class AdminRESTController {
         return userRepository.findById(id);
     }
 
-    @PostMapping
-    public User addAdmin(@RequestBody User admin){
-        userRepository.save(admin);
-        return admin;
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<User> delAdmin(@PathVariable("id") long id){
         User admin = userRepository.findById(id);
