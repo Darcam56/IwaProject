@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {JwtResponse} from './jwt-response';
 import {SignupInfoFestAdmin} from './signup-info-festAdmin';
 import {SignupInfoBand} from './signup-info-band';
+import {SignupInfoFestGoer} from './signup-info-fest-goer';
 
 const httpOptions = {
   headers: new HttpHeaders({'COntent-Type': 'application/json'})
@@ -28,7 +29,7 @@ export class AuthService {
     return this.http.post<string>(this.signupUrl += '/band', info, httpOptions);
   }
 
-  signUpSpec(info: SignupInfo): Observable<string> {
+  signUpSpec(info: SignupInfoFestGoer): Observable<string> {
     return this.http.post<string>(this.signupUrl += '/spec', info, httpOptions);
   }
 
