@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-/*import {SignupInfoBand} from '../auth/signup-info-band';
-import {SignupInfoFestGoer} from '../auth/signup-info-fest-goer';
-import {SignupInfoFestAdmin} from '../auth/signup-info-festAdmin';*/
+import {SignupInfoBand} from 'src/app/auth/signup-info-band';
+import {SignupInfoSpec} from 'src/app/auth/signup-info-spec';
+import {SignupInfoOrg} from 'src/app/auth/signup-info-org';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,10 +19,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  form: any = {};
-  /*signupInfoBand: SignupInfoBand;
-  signupInfoOrg: SignupInfoFestAdmin;
-  signupInfoSpec: SignupInfoFestGoer;*/
+  signupInfoBand: SignupInfoBand;
+  signupInfoOrg: SignupInfoOrg;
+  signupInfoSpec: SignupInfoSpec;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -43,17 +42,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /*onSubmitBand() {
-    console.log(this.form);
+  onSubmitBand(usr: string, pwd: string, name: string, mt: string, desc: string) {
 
-    this.signupInfoBand = new SignupInfoBand(
-      this.form.username,
-      this.form.password,
-      this.form.name,
-      this.form.musicType,
-      this.form.desc);
+    this.signupInfoBand = new SignupInfoBand(usr, pwd, name, mt, desc);
 
-    this.authService.signUpBand(this.signupInfoBand).subscribe(
+    /*this.authService.signUpBand(this.signupInfoBand).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
@@ -64,19 +57,14 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
       }
-    );
+    );*/
   }
 
-  onSubmitSpec() {
-    console.log(this.form);
+  onSubmitSpec(usr: string, pwd: string, firstname: string, lastname: string) {
 
-    this.signupInfoSpec = new SignupInfoFestGoer(
-      this.form.username,
-      this.form.password,
-      this.form.firstname,
-      this.form.lastname);
+    this.signupInfoSpec = new SignupInfoSpec(usr, pwd, firstname, lastname);
 
-    this.authService.signUpSpec(this.signupInfoSpec).subscribe(
+    /*this.authService.signUpSpec(this.signupInfoSpec).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
@@ -87,17 +75,14 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
       }
-    );
+    );*/
   }
 
-  onSubmitOrg() {
-    console.log(this.form);
+  onSubmitOrg(usr: string, pwd: string) {
 
-    this.signupInfoOrg = new SignupInfoFestAdmin(
-      this.form.username,
-      this.form.password);
+    this.signupInfoOrg = new SignupInfoOrg(usr, pwd);
 
-    this.authService.signUpOrg(this.signupInfoOrg).subscribe(
+    /*this.authService.signUpOrg(this.signupInfoOrg).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
@@ -108,7 +93,6 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
       }
-    );
-  }*/
-
+    );*/
+  }
 }

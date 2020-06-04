@@ -1,8 +1,9 @@
 <div *ngIf="isSignedUp; else signupFormBand">
   Your registration is successful. Please login!
 </div>
+
 <ng-template #signupFormBand>
-  <form>
+  <form >
     <mat-form-field>
       <mat-label>Username</mat-label>
       <input matInput #username required [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
@@ -34,7 +35,72 @@
       <textarea matInput #desc cdkTextareaAutosize cdkAutosizeMaxRows="5"></textarea>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="accent">Register</button>
+    <button mat-raised-button color="accent"
+            (click)="onSubmitBand(username.value, password.value, name.value, musicType.value, desc.value)"
+            [disabled]="usernameFormControl.hasError('required')
+            || passwordFormControl.hasError('minlength')
+            || passwordFormControl.hasError('required')">
+      Register
+    </button>
   </form>
 </ng-template>
 
+<ng-template #signupFormSpec>
+  <form>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput #username required [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="usernameFormControl.hasError('required')">Username is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput #password required [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+      <mat-hint align="end">At least 6 characters</mat-hint>
+      <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+        Please enter a valid password
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">Password is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput #fisrtname>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput #lastname>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="accent"
+            (click)="onSubmitSpec(username.value, password.value, fisrtname.value, lastname.value)"
+            [disabled]="usernameFormControl.hasError('required')
+            || passwordFormControl.hasError('minlength')
+            || passwordFormControl.hasError('required')">
+      Register
+    </button>
+  </form>
+</ng-template>
+
+<ng-template #signupFormOrg>
+  <form>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput #username required [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="usernameFormControl.hasError('required')">Username is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput #password required [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+      <mat-hint align="end">At least 6 characters</mat-hint>
+      <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+        Please enter a valid password
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">Password is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="accent">Register</button>
+  </form>
+</ng-template>
