@@ -1,0 +1,35 @@
+<div *ngIf="isLoggedIn; else loggedOut">
+  Logged in as {{roles}}.
+</div>
+
+<ng-template #loggedOut>
+  <div class="row col-sm-6" style="max-width:350px;">
+    <form>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput #username required [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="usernameFormControl.hasError('required')">Username is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput #password required [formControl]="passwordFormControl" [errorStateMatcher]="matcher" type="password">
+        <mat-hint align="end">At least 6 characters</mat-hint>
+        <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+          Please enter a valid password
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">Password is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="accent"
+              (click)="onSubmit(username.value, password.value)"
+              [disabled]="usernameFormControl.hasError('required')
+            || passwordFormControl.hasError('minlength')
+            || passwordFormControl.hasError('required')">
+        Register
+      </button>
+    </form>
+    <hr />
+    <p>Don't have an account?</p>
+    <a mat-button href="signup" class="btn btn-success">Sign Up</a>
+  </div>
+</ng-template>
