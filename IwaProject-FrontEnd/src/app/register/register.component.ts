@@ -4,6 +4,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {SignupInfoBand} from 'src/app/auth/signup-info-band';
 import {SignupInfoSpec} from 'src/app/auth/signup-info-spec';
 import {SignupInfoOrg} from 'src/app/auth/signup-info-org';
+import {AuthService} from 'src/app/auth/auth.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(/*private authService: AuthService*/) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
   }
@@ -46,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
     this.signupInfoBand = new SignupInfoBand(usr, pwd, name, mt, desc);
 
-    /*this.authService.signUpBand(this.signupInfoBand).subscribe(
+    this.authService.signUpBand(this.signupInfoBand).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
@@ -57,14 +58,14 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
       }
-    );*/
+    );
   }
 
   onSubmitSpec(usr: string, pwd: string, firstname: string, lastname: string) {
 
     this.signupInfoSpec = new SignupInfoSpec(usr, pwd, firstname, lastname);
 
-    /*this.authService.signUpSpec(this.signupInfoSpec).subscribe(
+    this.authService.signUpSpec(this.signupInfoSpec).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
@@ -75,14 +76,14 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
       }
-    );*/
+    );
   }
 
   onSubmitOrg(usr: string, pwd: string) {
 
     this.signupInfoOrg = new SignupInfoOrg(usr, pwd);
 
-    /*this.authService.signUpOrg(this.signupInfoOrg).subscribe(
+    this.authService.signUpOrg(this.signupInfoOrg).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
@@ -93,6 +94,6 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
       }
-    );*/
+    );
   }
 }

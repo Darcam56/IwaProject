@@ -7,12 +7,22 @@ import { MaterialModule } from './material/material.module';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import { HttpClientModule} from '@angular/common/http';
+import { httpInterceptorProviders } from './auth/auth-interceptor';
+import { ConcertListComponent } from './concert-list/concert-list.component';
+import { StageListComponent } from './stage-list/stage-list.component';
+import { BandComponent } from './band/band.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConcertListComponent,
+    StageListComponent,
+    BandComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -20,9 +30,10 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     MaterialModule,
     FormsModule,
     TextFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,7 +8,7 @@ import {SignupInfoBand} from './signup-info-band';
 import {SignupInfoSpec} from './signup-info-spec';
 
 const httpOptions = {
-  headers: new HttpHeaders({'COntent-Type': 'application/json'})
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
