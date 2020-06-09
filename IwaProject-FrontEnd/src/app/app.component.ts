@@ -35,4 +35,10 @@ export class AppComponent implements OnInit{
       });
     }
   }
+
+  logout(){
+    this.tokenStorage.signOut();
+    console.log('logout');
+    window.location.href = '/home';
+  }
 }

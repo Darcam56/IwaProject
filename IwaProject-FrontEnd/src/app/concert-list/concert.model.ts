@@ -1,11 +1,11 @@
 import {Stage} from '../stage-list/stage.model';
-import {BandComponent} from '../band/band.component';
+import {Band} from '../band/band.model';
 
 export class Concert{
   id: number;
   start: Date;
   duration: Date;
-  band: BandComponent;
+  band: Band;
   stage: Stage;
 
   constructor(id: number, start: Date, duration: Date) {
