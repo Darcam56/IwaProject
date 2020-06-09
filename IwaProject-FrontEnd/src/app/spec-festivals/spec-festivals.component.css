@@ -1,4 +1,10 @@
 table{
   width: calc(100% - 4rem);;
-  margin: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+mat-form-field{
+  margin-left: 2rem;
+  margin-top: 1rem;
 }

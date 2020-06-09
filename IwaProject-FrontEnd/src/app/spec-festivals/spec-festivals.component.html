@@ -1,4 +1,10 @@
-<table mat-table [dataSource]="festList" class="mat-elevation-z8">
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!-- Name Column -->
   <ng-container matColumnDef="Name">
