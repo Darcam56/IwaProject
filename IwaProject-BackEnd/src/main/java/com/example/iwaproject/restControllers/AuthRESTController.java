@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/auth")
 public class AuthRESTController {
 

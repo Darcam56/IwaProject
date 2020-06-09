@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/bands")
 public class BandRESTController {
 
@@ -43,6 +43,16 @@ public class BandRESTController {
     @GetMapping("/{id}")
     public Band findBand(@PathVariable("id") long id){
         return (Band) userRepository.findById(id);
+    }
+
+    @GetMapping("/{username}/concerts")
+    public List<Concert> findConcertsFromStage(@PathVariable("username") String username){
+        if (username != null) {
+            Band band = (Band) userRepository.findByUsername(username)
+                    .orElseThrow(() -> new RuntimeException("Fail -> Cause: User not found."));
+            return band.getConcerts();
+        }
+        return null;
     }
 
     @DeleteMapping("/{id}")
