@@ -9,8 +9,8 @@
     <button mat-button *ngIf="!authority" class="signup-spec" [routerLink]="['/signup']">SignUp</button>
 
     <!-- Spectator -->
-    <button mat-button *ngIf="authority === 'spec'">My Festivals</button>
-    <button mat-button *ngIf="authority === 'spec'">Festivals</button>
+    <button mat-button *ngIf="authority === 'spec'" >My Festivals</button>
+    <button mat-button *ngIf="authority === 'spec'" [routerLink]="['/specFest']">Festivals</button>
 
     <!-- Band -->
     <button mat-button *ngIf="authority === 'band'" [routerLink]="['/bandConcert']">My concerts</button>

@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import { BandConcertsComponent } from './band-concerts/band-concerts.component';
+import { SpecFestivalsComponent } from './spec-festivals/spec-festivals.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BandConcertsComponent } from './band-concerts/band-concerts.component';
     BandComponent,
     LoginComponent,
     HomeComponent,
-    BandConcertsComponent
+    BandConcertsComponent,
+    SpecFestivalsComponent
   ],
   imports: [
     BrowserModule,
