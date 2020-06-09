@@ -29,8 +29,7 @@ export class SpecOwnFestivalsComponent implements OnInit {
       });
   }
 
-  // TODO
   delFest(id: number) {
-    this.spectatorService.linkSpecToFestival(this.tokenStorage.getUsername(), id);
+    this.spectatorService.unlinkSpecToFestival(this.tokenStorage.getUsername(), id);
   }
 }
