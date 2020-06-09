@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
           this.authority = 'org';
           return false;
         }
-        if (role === 'ROLE_BOND') {
+        if (role === 'ROLE_BAND') {
           this.authority = 'band';
           return false;
         }

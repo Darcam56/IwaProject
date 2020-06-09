@@ -15,6 +15,7 @@ import { BandComponent } from './band/band.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
+import { BandConcertsComponent } from './band-concerts/band-concerts.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {AppRoutingModule} from './app-routing.module';
     StageListComponent,
     BandComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    BandConcertsComponent
   ],
   imports: [
     BrowserModule,
