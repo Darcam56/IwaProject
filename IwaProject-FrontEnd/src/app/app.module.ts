@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import { BandConcertsComponent } from './band-concerts/band-concerts.component';
 import { SpecFestivalsComponent } from './spec-festivals/spec-festivals.component';
+import { SpecOwnFestivalsComponent } from './spec-own-festivals/spec-own-festivals.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SpecFestivalsComponent } from './spec-festivals/spec-festivals.componen
     LoginComponent,
     HomeComponent,
     BandConcertsComponent,
-    SpecFestivalsComponent
+    SpecFestivalsComponent,
+    SpecOwnFestivalsComponent
   ],
   imports: [
     BrowserModule,

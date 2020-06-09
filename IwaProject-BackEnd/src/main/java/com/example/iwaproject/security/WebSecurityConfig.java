@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/bands/**").hasAnyRole("ADMIN","BAND")
                 .antMatchers("/concerts/**").hasAnyRole("ADMIN","ORG")
                 .antMatchers("/stages/**").hasAnyRole("ADMIN","ORG")
-                .antMatchers("/festivals/**").hasAnyRole("ADMIN","ORG")
+                .antMatchers("/festivals/**").hasAnyRole("ADMIN","ORG","SPEC")
                 .antMatchers("/festAdmins/**").hasAnyRole("ADMIN", "ORG")
                 .antMatchers("/festGoers/**").hasAnyRole("ADMIN", "SPEC")
 				.anyRequest().authenticated()

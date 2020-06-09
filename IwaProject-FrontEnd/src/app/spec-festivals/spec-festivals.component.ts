@@ -12,7 +12,7 @@ import {FestivalService} from '../services/festival.service';
 export class SpecFestivalsComponent implements OnInit {
 
   festList: Festival[];
-  displayedColumns: string[] = ['Name', 'Descritpion', ''];
+  displayedColumns: string[] = ['Name', 'Descritpion', 'Order'];
 
   constructor(private festivalService: FestivalService,
               private spectatorService: SpecService,

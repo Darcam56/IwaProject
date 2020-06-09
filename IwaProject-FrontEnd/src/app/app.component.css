@@ -7,8 +7,3 @@ h1, button{
   top: -5px;
   right: 0px;
 }
-
-table{
-  width: calc(100% - 4rem);;
-  margin: 2rem;
-}

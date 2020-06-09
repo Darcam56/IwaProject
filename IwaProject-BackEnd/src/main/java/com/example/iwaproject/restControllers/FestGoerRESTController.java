@@ -55,15 +55,18 @@ public class FestGoerRESTController {
         return null;
     }
 
-    @PostMapping("/{id}/festivals/{festId}")
-    public ResponseEntity<FestGoer> addFestivalFromFestGoer(@PathVariable("id") long id, @PathVariable("festId") long festId){
-        FestGoer festGoer = (FestGoer) userRepository.findById(id);
-        Festival fest = festivalRepository.findById(festId);
+    @PostMapping("/{username}/festivals/{festId}")
+    public ResponseEntity<FestGoer> addFestivalFromFestGoer(@PathVariable("username") String username, @PathVariable("festId") long festId){
+        if (username != null) {
+            FestGoer festGoer = (FestGoer) userRepository.findByUsername(username)
+                    .orElseThrow(() -> new RuntimeException("Fail -> Cause: User not found."));
+            Festival fest = festivalRepository.findById(festId);
 
-        festGoer.addFestival(fest);
-        userRepository.save(festGoer);
-        //festivalRepository.save(fest);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            festGoer.addFestival(fest);
+            userRepository.save(festGoer);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{id}/festivals/{festId}")
