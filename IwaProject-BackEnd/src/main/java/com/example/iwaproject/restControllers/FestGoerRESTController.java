@@ -45,10 +45,14 @@ public class FestGoerRESTController {
         return (FestGoer) userRepository.findById(id);
     }
 
-    @GetMapping("/{id}/festivals")
-    public List<Festival> findFestivalFromFestGoer(@PathVariable("id") long id){
-        FestGoer festGoer = (FestGoer) userRepository.findById(id);
-        return festGoer.getFestivals();
+    @GetMapping("/{username}/festivals")
+    public List<Festival> findFestivalFromFestGoer(@PathVariable("username") String username){
+        if (username != null) {
+            FestGoer festGoer = (FestGoer) userRepository.findByUsername(username)
+                    .orElseThrow(() -> new RuntimeException("Fail -> Cause: User not found."));
+            return festGoer.getFestivals();
+        }
+        return null;
     }
 
     @PostMapping("/{id}/festivals/{festId}")
