@@ -1,5 +1,5 @@
-import {Stage} from '../stage-list/stage.model';
-import {Band} from '../band/band.model';
+import {Stage} from './stage.model';
+import {Band} from './band.model';
 
 export class Concert{
   id: number;

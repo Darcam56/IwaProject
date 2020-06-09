@@ -33,11 +33,11 @@ export class BandService {
   }
 
   /** GET: get concerts band by id. 404 if not found */
-  getConcerts(id: number): Observable<Concert[]> {
-    const url = `${this.bandsUrl}/${id}/concerts`;
+  getConcerts(username: string): Observable<Concert[]> {
+    const url = `${this.bandsUrl}/${username}/concerts`;
     return this.http.get<Concert[]>(url).pipe(
-      tap(_ => this.log(`fetched contact id=${id}`)),
-      catchError(this.handleError<Concert[]>(`getConcerts id=${id}`))
+      tap(_ => this.log(`fetched band =${username}`)),
+      catchError(this.handleError<Concert[]>(`getConcerts =${username}`))
     );
   }
 

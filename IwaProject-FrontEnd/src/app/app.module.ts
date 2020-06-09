@@ -9,7 +9,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import { HttpClientModule} from '@angular/common/http';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
-import { ConcertListComponent } from './concert-list/concert-list.component';
 import { StageListComponent } from './stage-list/stage-list.component';
 import { BandComponent } from './band/band.component';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +21,6 @@ import { BandConcertsComponent } from './band-concerts/band-concerts.component';
   declarations: [
     AppComponent,
     RegisterComponent,
-    ConcertListComponent,
     StageListComponent,
     BandComponent,
     LoginComponent,

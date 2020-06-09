@@ -13,7 +13,7 @@
     <button mat-button *ngIf="authority === 'spec'">Festivals</button>
 
     <!-- Band -->
-    <button mat-button *ngIf="authority === 'band'">My concerts</button>
+    <button mat-button *ngIf="authority === 'band'" [routerLink]="['/bandConcert']">My concerts</button>
 
     <!-- Organiser -->
     <button mat-button *ngIf="authority === 'org'">My Festivals</button>
