@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Festival} from '../models/festival.model';
-import {FestivalService} from '../services/festival.service';
 import {SpecService} from '../services/spec.service';
 import {TokenStorageService} from '../auth/token-storage.service';
 
@@ -12,7 +11,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 export class SpecOwnFestivalsComponent implements OnInit {
 
   festList: Festival[];
-  displayedColumns: string[] = ['Name', 'Descritpion', 'Cancel'];
+  displayedColumns: string[] = ['Name', 'Description', 'Cancel'];
 
   constructor(private spectatorService: SpecService,
               private tokenStorage: TokenStorageService) { }
@@ -30,6 +29,8 @@ export class SpecOwnFestivalsComponent implements OnInit {
   }
 
   delFest(id: number) {
-    this.spectatorService.unlinkSpecToFestival(this.tokenStorage.getUsername(), id);
+    this.festList = this.festList.filter( f => f.id !== id);
+    this.spectatorService.unlinkSpecToFestival(this.tokenStorage.getUsername(), id)
+      .subscribe( );
   }
 }

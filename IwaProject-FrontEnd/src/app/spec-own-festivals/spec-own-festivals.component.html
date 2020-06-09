@@ -7,8 +7,8 @@
   </ng-container>
 
   <!-- Desc Column -->
-  <ng-container matColumnDef="Descritpion">
-    <th mat-header-cell *matHeaderCellDef> Descritpion </th>
+  <ng-container matColumnDef="Description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
     <td mat-cell *matCellDef="let fest"> {{fest.description}} </td>
   </ng-container>
 
@@ -17,7 +17,7 @@
     <th mat-header-cell *matHeaderCellDef>  </th>
     <td mat-cell *matCellDef="let fest">
       <button mat-mini-fab color="warn" (click)="delFest(fest.id)" aria-label="remove button">
-        <mat-icon>cancel</mat-icon>
+        <mat-icon>close</mat-icon>
       </button>
     </td>
   </ng-container>

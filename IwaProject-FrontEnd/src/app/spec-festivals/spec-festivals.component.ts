@@ -31,6 +31,7 @@ export class SpecFestivalsComponent implements OnInit {
   }
 
   addFest(id: number) {
-    this.spectatorService.linkSpecToFestival(this.tokenStorage.getUsername(), id);
+    this.spectatorService.linkSpecToFestival(this.tokenStorage.getUsername(), id)
+      .subscribe();
   }
 }
