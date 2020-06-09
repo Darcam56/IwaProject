@@ -57,8 +57,6 @@ public class FestGoerRESTController {
 
     @PostMapping("/{username}/festivals/{festId}")
     public ResponseEntity<FestGoer> addFestivalFromFestGoer(@PathVariable("username") String username, @PathVariable("festId") long festId){
-        // TODO
-        System.out.println("---- Coucou je passe dans l'ajout d'un lien !!! -----");
         if (username != null) {
             FestGoer festGoer = (FestGoer) userRepository.findByUsername(username)
                     .orElseThrow(() -> new RuntimeException("Fail -> Cause: User not found."));
