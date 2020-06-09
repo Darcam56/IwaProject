@@ -1,1 +1,25 @@
-<p>spec-festivals works!</p>
+<table mat-table [dataSource]="festList" class="mat-elevation-z8">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let fest"> {{fest.festivalName}} </td>
+  </ng-container>
+
+  <!-- Desc Column -->
+  <ng-container matColumnDef="Descritpion">
+    <th mat-header-cell *matHeaderCellDef> Descritpion </th>
+    <td mat-cell *matCellDef="let fest"> {{fest.description}} </td>
+  </ng-container>
+
+  <!-- Order Column -->
+  <ng-container matColumnDef="">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let fest">
+      <button mat-raised-button color="accent" (click)="addFest(fest.id)">Order</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -9,7 +9,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import { HttpClientModule} from '@angular/common/http';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
-import { BandComponent } from './band/band.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -21,7 +20,6 @@ import { SpecFestivalsComponent } from './spec-festivals/spec-festivals.componen
   declarations: [
     AppComponent,
     RegisterComponent,
-    BandComponent,
     LoginComponent,
     HomeComponent,
     BandConcertsComponent,
