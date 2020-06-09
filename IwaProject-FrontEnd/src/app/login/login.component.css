@@ -1,0 +1,16 @@
+.red-snackbar {
+  background: #F44336;
+  color: #FFFFFF;
+}
+
+form, button, a{
+  margin: 1rem;
+}
+
+p{
+  margin-left: 1rem;
+}
+
+.btn_new_account{
+  color : #6200EE;
+}
