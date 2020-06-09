@@ -8,3 +8,8 @@ h1, button{
   right: 0px;
 }
 
+.red-snackbar {
+  background: #F44336;
+  color: #FFFFFF;
+}
+
