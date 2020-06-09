@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
+  signupType: string;
 
   passwordFormControl = new FormControl('', [
     Validators.required,

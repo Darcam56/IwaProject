@@ -1,2 +1,29 @@
-Hello World!
-<app-login></app-login>
+<div class="header_menu">
+  <mat-toolbar color="primary">
+    <h1>IwaEvent</h1>
+      <button mat-icon-button aria-label="home icon" [routerLink]="['/home']">
+        <mat-icon>home</mat-icon>
+      </button>
+    <!-- Before Login -->
+    <button mat-button *ngIf="!authority" [routerLink]="['/login']">Login</button>
+    <button mat-button *ngIf="!authority" class="signup-spec">SignUp as Spectator</button>
+    <button mat-button *ngIf="!authority" class="signup-org">SignUp as Organiser</button>
+    <button mat-button *ngIf="!authority" class="signup-band">SignUp as Band</button>
+
+    <!-- Spectator -->
+    <button mat-button *ngIf="authority === 'spec'">Festivals</button>
+    <button mat-button *ngIf="authority === 'spec'">My Festivals</button>
+
+    <!-- Band -->
+    <button mat-button *ngIf="authority === 'band'">My concerts</button>
+
+    <!-- Organiser -->
+    <button mat-button *ngIf="authority === 'org'">My Festivals</button>
+
+    <button class="logout" mat-icon-button aria-label="disconnect">
+      <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>

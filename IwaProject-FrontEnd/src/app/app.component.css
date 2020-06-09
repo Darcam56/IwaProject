@@ -1,4 +1,10 @@
-.red-snackbar {
-  background: #F44336;
-  color: #FFFFFF;
+h1, button{
+  margin: 1rem;
 }
+
+.logout{
+  position: absolute;
+  top: -5px;
+  right: 0px;
+}
+

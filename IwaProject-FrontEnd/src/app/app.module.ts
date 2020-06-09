@@ -13,6 +13,8 @@ import { ConcertListComponent } from './concert-list/concert-list.component';
 import { StageListComponent } from './stage-list/stage-list.component';
 import { BandComponent } from './band/band.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { LoginComponent } from './login/login.component';
     ConcertListComponent,
     StageListComponent,
     BandComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     TextFieldModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

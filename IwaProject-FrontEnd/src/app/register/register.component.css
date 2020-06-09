@@ -1,3 +1,8 @@
-form, button{
+h1, form, button, mat-button-toggle-group{
   margin: 1rem;
+}
+
+.mat-button-toggle-checked{
+  background-color: #6200EE;
+  color: #FFFFFF;
 }
