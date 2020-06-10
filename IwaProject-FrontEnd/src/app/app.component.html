@@ -16,7 +16,7 @@
     <button mat-button *ngIf="authority === 'band'" [routerLink]="['/bandConcert']">My concerts</button>
 
     <!-- Organiser -->
-    <button mat-button *ngIf="authority === 'org'">My Festivals</button>
+    <button mat-button *ngIf="authority === 'org'"  [routerLink]="['/orgFest']">My Festivals</button>
 
     <button class="logout" mat-icon-button aria-label="disconnect" (dblclick)="logout()">
       <mat-icon>logout</mat-icon>

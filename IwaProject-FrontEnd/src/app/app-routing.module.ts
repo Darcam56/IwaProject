@@ -7,6 +7,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {BandConcertsComponent} from './band-concerts/band-concerts.component';
 import {SpecFestivalsComponent} from './spec-festivals/spec-festivals.component';
 import {SpecOwnFestivalsComponent} from './spec-own-festivals/spec-own-festivals.component';
+import {OrgFestComponent} from './org-fest/org-fest.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'bandConcert', component: BandConcertsComponent },
   { path: 'specFest', component: SpecFestivalsComponent },
   { path: 'specOwnFest', component: SpecOwnFestivalsComponent },
+  { path: 'orgFest', component: OrgFestComponent },
   { path: 'signup', component: RegisterComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
