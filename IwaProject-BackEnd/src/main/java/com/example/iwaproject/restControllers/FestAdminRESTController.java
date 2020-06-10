@@ -14,7 +14,6 @@ import java.util.*;
 @RequestMapping("/festAdmins")
 public class FestAdminRESTController {
 
-    private RoleRepository roleRepository;
     private UserRepository userRepository;
     private FestivalRepository festivalRepository;
     private FestivalRESTController festivalRESTController;
@@ -25,7 +24,6 @@ public class FestAdminRESTController {
         this.userRepository = userRepository;
         this.festivalRepository = festivalRepository;
         this.festivalRESTController = festivalRESTController;
-        this.roleRepository = roleRepository;
     }
 
     @GetMapping
@@ -45,19 +43,26 @@ public class FestAdminRESTController {
         return (FestAdmin) userRepository.findById(id);
     }
 
-    @GetMapping("/{id}/festivals")
-    public List<Festival> findFestivalFromFestAdmin(@RequestBody Festival fest, @PathVariable("id") long id){
-        FestAdmin festAdmin = (FestAdmin) userRepository.findById(id);
-        return festivalRepository.findFestivalByFestAdminContaining(festAdmin);
+    @GetMapping("/{username}/festivals")
+    public List<Festival> findFestivalFromFestAdmin(@PathVariable("username") String username){
+        if (username != null) {
+            FestAdmin festAdmin = (FestAdmin) userRepository.findByUsername(username)
+                    .orElseThrow(() -> new RuntimeException("Fail -> Cause: User not found."));
+            return festAdmin.getFestivals();
+        }
+        return null;
     }
 
-    @PostMapping("/{id}/festivals")
-    public Festival addFestivalFromFestAdmin(@RequestBody Festival fest, @PathVariable("id") long id){
-        FestAdmin festAdmin = (FestAdmin) userRepository.findById(id);
-        fest.setFestAdmin(festAdmin);
-        userRepository.save(festAdmin);
-        festivalRepository.save(fest);
-        return fest;
+    @PostMapping("/{username}/festivals")
+    public Festival addFestivalFromFestAdmin(@RequestBody Festival fest, @PathVariable("username") String username){
+        if (username != null) {
+            FestAdmin festAdmin = (FestAdmin) userRepository.findByUsername(username)
+                    .orElseThrow(() -> new RuntimeException("Fail -> Cause: User not found."));
+            fest.setFestAdmin(festAdmin);
+            festivalRepository.save(fest);
+            return fest;
+        }
+        return null;
     }
 
     @DeleteMapping("/{id}")
@@ -83,22 +88,4 @@ public class FestAdminRESTController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    /*@PatchMapping("/{id}")
-    public ResponseEntity<FestAdmin> updatePartOfFestAdmin(@RequestBody Map<String, Object> updates, @PathVariable("id") long id){
-        FestAdmin admin = (FestAdmin) userRepository.findById(id);
-        if (admin == null){
-            System.out.println("FestAdmin Not Found !!!");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        partialUpdate(admin, updates);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    private void partialUpdate(FestAdmin admin, Map<String, Object> updates) {
-        if(updates.containsKey("username")){
-            admin.setUsername((String) updates.get("username"));
-        }
-        userRepository.save(admin);
-    }*/
 }
