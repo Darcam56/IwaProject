@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class OrganiserService {
 
-  private festsUrl = 'http://localhost:8080/organisers';
+  private festsUrl = 'http://localhost:8080/festAdmins';
 
   constructor(private http: HttpClient) {
   }
@@ -37,6 +37,7 @@ export class OrganiserService {
   /** GET: get Stages Organiser by id. 404 if not found */
   getFestivals(username: string): Observable<Festival[]> {
     const url = `${this.festsUrl}/${username}/festivals`;
+    console.log('coucou ' + url);
     return this.http.get<Festival[]>(url).pipe(
       tap(_ => this.log(`fetched organisers fests id=${username}`)),
       catchError(this.handleError<Festival[]>(`getFestivals id=${username}`))

@@ -1,4 +1,4 @@
-.red-snackbar {
+::ng-deep .mat-snack-bar-container{
   background: #F44336;
   color: #FFFFFF;
 }
