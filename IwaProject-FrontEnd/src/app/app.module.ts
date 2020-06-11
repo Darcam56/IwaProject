@@ -18,6 +18,8 @@ import { SpecOwnFestivalsComponent } from './spec-own-festivals/spec-own-festiva
 import { OrgFestComponent } from './org-fest/org-fest.component';
 import { FestDialogComponent } from './fest-dialog/fest-dialog.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { OrgStageComponent } from './org-stage/org-stage.component';
+import { StageDialogComponent } from './stage-dialog/stage-dialog.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     SpecOwnFestivalsComponent,
     OrgFestComponent,
     FestDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    OrgStageComponent,
+    StageDialogComponent
   ],
   imports: [
     BrowserModule,

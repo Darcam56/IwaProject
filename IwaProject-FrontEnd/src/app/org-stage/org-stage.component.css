@@ -16,3 +16,9 @@ mat-form-field, .addButton{
 .bntAction2{
   margin-left: 1rem;
 }
+
+.btnHome{
+  position: absolute;
+  right: 2rem;
+  margin-top: 1rem;
+}

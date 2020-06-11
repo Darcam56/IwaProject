@@ -3,23 +3,22 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-fest-dialog',
-  templateUrl: './fest-dialog.component.html',
-  styleUrls: ['./fest-dialog.component.css']
+  selector: 'app-stage-dialog',
+  templateUrl: './stage-dialog.component.html',
+  styleUrls: ['./stage-dialog.component.css']
 })
-export class FestDialogComponent implements OnInit {
+export class StageDialogComponent implements OnInit {
 
   form: FormGroup;
   title: string;
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<FestDialogComponent>,
+    private dialogRef: MatDialogRef<StageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
 
     this.form = fb.group({
-      festivalName: [data.festName],
-      description: [data.desc]
+      stageName: [data.festName]
     });
 
     this.title = data.title;

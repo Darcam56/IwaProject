@@ -8,6 +8,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {FormGroup} from '@angular/forms';
 import {FestDialogComponent} from '../fest-dialog/fest-dialog.component';
 import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-org-fest',
@@ -17,7 +18,7 @@ import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-d
 export class OrgFestComponent implements OnInit {
 
   festList: Festival[];
-  displayedColumns: string[] = ['Name', 'Description', 'Modify', 'Remove'];
+  displayedColumns: string[] = ['Name', 'Description', 'Action'];
   dataSource: MatTableDataSource<any>;
   form: FormGroup;
   newFestival: Festival;
@@ -25,7 +26,8 @@ export class OrgFestComponent implements OnInit {
   constructor(private festivalService: FestivalService,
               private organiserService: OrganiserService,
               private tokenStorage: TokenStorageService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getFestivals();
@@ -66,8 +68,10 @@ export class OrgFestComponent implements OnInit {
       });
   }
 
-  test(){
-    console.log('Je suis la colonne appuyée');
+  lookFestStages(fest: Festival){
+    const route = this.router.config.find(r => r.path === 'orgStage/:id');
+    route.data =  fest;
+    this.router.navigate(['orgStage/' + fest.id]);
   }
 
   openDialogNew() {
