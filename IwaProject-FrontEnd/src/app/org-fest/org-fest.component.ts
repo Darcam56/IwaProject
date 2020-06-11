@@ -7,6 +7,7 @@ import {OrganiserService} from '../services/org.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {FormGroup} from '@angular/forms';
 import {FestDialogComponent} from '../fest-dialog/fest-dialog.component';
+import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-org-fest',
@@ -24,7 +25,7 @@ export class OrgFestComponent implements OnInit {
   constructor(private festivalService: FestivalService,
               private organiserService: OrganiserService,
               private tokenStorage: TokenStorageService,
-              public dialog: MatDialog) { }
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getFestivals();
@@ -47,11 +48,22 @@ export class OrgFestComponent implements OnInit {
   }
 
   delFest(id: number) {
-    // TODO PopUp
-    this.festList = this.festList.filter( f => f.id !== id);
-    this.dataSource = new MatTableDataSource(this.festList);
-    this.festivalService.deleteFestival(id)
-      .subscribe();
+    const dialogConfig3 = new MatDialogConfig();
+
+    dialogConfig3.disableClose = true;
+    dialogConfig3.autoFocus = true;
+
+    const dialogRef3 = this.dialog.open(ConfirmationDialogComponent, dialogConfig3);
+
+    dialogRef3.afterClosed().subscribe(
+      data => {
+        if (data){
+          this.festList = this.festList.filter( f => f.id !== id);
+          this.dataSource = new MatTableDataSource(this.festList);
+          this.festivalService.deleteFestival(id)
+            .subscribe();
+        }
+      });
   }
 
   test(){
