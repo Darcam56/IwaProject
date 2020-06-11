@@ -46,7 +46,6 @@ export class OrganiserService {
   /** POST: add a new organiser to the server */
   addFestivalToOrganiser(username: string, fest: Festival): Observable<Festival> {
     const url = `${this.festsUrl}/${username}/festivals`;
-    console.log('JE suis dans la création');
     return this.http.post<Festival>(url, fest, httpOptions).pipe(
       tap((festivalAdded: Festival) => this.log(`added stage id=${festivalAdded.id}`)),
       catchError(this.handleError<Festival>(`addFestivalToOrganiser`))

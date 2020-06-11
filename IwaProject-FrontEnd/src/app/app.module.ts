@@ -17,6 +17,7 @@ import { SpecFestivalsComponent } from './spec-festivals/spec-festivals.componen
 import { SpecOwnFestivalsComponent } from './spec-own-festivals/spec-own-festivals.component';
 import { OrgFestComponent } from './org-fest/org-fest.component';
 import { FestDialogComponent } from './fest-dialog/fest-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FestDialogComponent } from './fest-dialog/fest-dialog.component';
     SpecFestivalsComponent,
     SpecOwnFestivalsComponent,
     OrgFestComponent,
-    FestDialogComponent
+    FestDialogComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

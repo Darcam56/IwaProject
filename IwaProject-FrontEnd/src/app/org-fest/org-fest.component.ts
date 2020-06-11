@@ -16,7 +16,7 @@ import {FestDialogComponent} from '../fest-dialog/fest-dialog.component';
 export class OrgFestComponent implements OnInit {
 
   festList: Festival[];
-  displayedColumns: string[] = ['Name', 'Descritpion', 'Remove'];
+  displayedColumns: string[] = ['Name', 'Description', 'Modify', 'Remove'];
   dataSource: MatTableDataSource<any>;
   form: FormGroup;
   newFestival: Festival;
@@ -43,7 +43,6 @@ export class OrgFestComponent implements OnInit {
       .subscribe(festList => {
         this.festList = festList;
         this.dataSource = new MatTableDataSource(this.festList);
-        console.log(this.festList);
       });
   }
 
@@ -59,7 +58,7 @@ export class OrgFestComponent implements OnInit {
     console.log('Je suis la colonne appuyée');
   }
 
-  openDialog() {
+  openDialogNew() {
 
     const dialogConfig = new MatDialogConfig();
 
@@ -75,10 +74,38 @@ export class OrgFestComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       data => {
-        console.log('Dialog output: ', data);
-        this.newFestival = new Festival(data.festivalName, data.description);
-        this.organiserService.addFestivalToOrganiser(this.tokenStorage.getUsername(), this.newFestival)
-          .subscribe(_ => this.getFestivals());
+        if (data){
+          this.newFestival = new Festival(data.festivalName, data.description);
+          this.organiserService.addFestivalToOrganiser(this.tokenStorage.getUsername(), this.newFestival)
+            .subscribe(_ => this.getFestivals());
+        }
+      });
+  }
+
+  openDialogModify(fest: Festival) {
+
+    const dialogConfig2 = new MatDialogConfig();
+
+    dialogConfig2.disableClose = true;
+    dialogConfig2.autoFocus = true;
+    dialogConfig2.data = {
+      title: 'Festival modification',
+      festName: fest.festivalName,
+      desc: fest.description
+    };
+
+    const dialogRef2 = this.dialog.open(FestDialogComponent, dialogConfig2);
+
+    dialogRef2.afterClosed().subscribe(
+      data => {
+        if (data){
+          const changesMap = new Map<string, string>();
+          if (data.festivalName !== '') { changesMap.set('festivalName', data.festivalName); }
+          if (data.description !== '') { changesMap.set('description', data.description); }
+
+          this.festivalService.partialUpdateFestival(fest.id, changesMap)
+            .subscribe(_ => this.getFestivals());
+        }
       });
   }
 }

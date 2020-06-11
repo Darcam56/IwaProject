@@ -33,6 +33,6 @@ export class FestDialogComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }
