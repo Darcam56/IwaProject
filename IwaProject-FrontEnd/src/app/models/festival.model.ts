@@ -3,8 +3,7 @@ export class Festival{
   festivalName: string;
   description: string;
 
-  constructor(id: number, festivalName: string, description: string) {
-    this.id = id;
+  constructor(festivalName: string, description: string) {
     this.festivalName = festivalName;
     this.description = description;
   }

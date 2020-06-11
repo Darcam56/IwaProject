@@ -1,17 +1,12 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {Festival} from '../models/festival.model';
 import {FestivalService} from '../services/festival.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {OrganiserService} from '../services/org.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {FormGroup} from '@angular/forms';
 import {FestDialogComponent} from '../fest-dialog/fest-dialog.component';
-
-export interface DialogData {
-  festname: string;
-  desc: string;
-}
 
 @Component({
   selector: 'app-org-fest',
@@ -24,6 +19,7 @@ export class OrgFestComponent implements OnInit {
   displayedColumns: string[] = ['Name', 'Descritpion', 'Remove'];
   dataSource: MatTableDataSource<any>;
   form: FormGroup;
+  newFestival: Festival;
 
   constructor(private festivalService: FestivalService,
               private organiserService: OrganiserService,
@@ -78,7 +74,11 @@ export class OrgFestComponent implements OnInit {
     const dialogRef = this.dialog.open(FestDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => console.log('Dialog output: ', data)
-    );
+      data => {
+        console.log('Dialog output: ', data);
+        this.newFestival = new Festival(data.festivalName, data.description);
+        this.organiserService.addFestivalToOrganiser(this.tokenStorage.getUsername(), this.newFestival)
+          .subscribe(_ => this.getFestivals());
+      });
   }
 }

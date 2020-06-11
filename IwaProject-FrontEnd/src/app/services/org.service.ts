@@ -37,7 +37,6 @@ export class OrganiserService {
   /** GET: get Stages Organiser by id. 404 if not found */
   getFestivals(username: string): Observable<Festival[]> {
     const url = `${this.festsUrl}/${username}/festivals`;
-    console.log('coucou ' + url);
     return this.http.get<Festival[]>(url).pipe(
       tap(_ => this.log(`fetched organisers fests id=${username}`)),
       catchError(this.handleError<Festival[]>(`getFestivals id=${username}`))
@@ -45,9 +44,10 @@ export class OrganiserService {
   }
 
   /** POST: add a new organiser to the server */
-  addFestivalToOrganiser(username: string, stage: Stage): Observable<Festival> {
+  addFestivalToOrganiser(username: string, fest: Festival): Observable<Festival> {
     const url = `${this.festsUrl}/${username}/festivals`;
-    return this.http.post<Festival>(url, stage, httpOptions).pipe(
+    console.log('JE suis dans la création');
+    return this.http.post<Festival>(url, fest, httpOptions).pipe(
       tap((festivalAdded: Festival) => this.log(`added stage id=${festivalAdded.id}`)),
       catchError(this.handleError<Festival>(`addFestivalToOrganiser`))
     );
