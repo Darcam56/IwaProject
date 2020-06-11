@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Festival register</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput
+           placeholder="Festival Name"
+           formControlName="festivalName">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+        <textarea matInput placeholder="Description"
+                  formControlName="description"
+                  cdkTextareaAutosize cdkAutosizeMaxRows="4" maxlength="250"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="close()">
+    Close
+  </button>
+
+  <button mat-raised-button color="accent" (click)="save()">
+    Save
+  </button>
+</mat-dialog-actions>

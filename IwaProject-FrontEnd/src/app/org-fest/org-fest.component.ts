@@ -1,10 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {Festival} from '../models/festival.model';
-import {SpecService} from '../services/spec.service';
 import {FestivalService} from '../services/festival.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {OrganiserService} from '../services/org.service';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
+import {FormGroup} from '@angular/forms';
+import {NewFestDialogComponent} from '../new-fest-dialog/new-fest-dialog.component';
+
+export interface DialogData {
+  festname: string;
+  desc: string;
+}
 
 @Component({
   selector: 'app-org-fest',
@@ -14,12 +21,14 @@ import {OrganiserService} from '../services/org.service';
 export class OrgFestComponent implements OnInit {
 
   festList: Festival[];
-  displayedColumns: string[] = ['Name', 'Descritpion', 'Order'];
+  displayedColumns: string[] = ['Name', 'Descritpion', 'Remove'];
   dataSource: MatTableDataSource<any>;
+  form: FormGroup;
 
   constructor(private festivalService: FestivalService,
               private organiserService: OrganiserService,
-              private tokenStorage: TokenStorageService) { }
+              private tokenStorage: TokenStorageService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getFestivals();
@@ -45,7 +54,7 @@ export class OrgFestComponent implements OnInit {
   delFest(id: number) {
     // TODO PopUp
     this.festList = this.festList.filter( f => f.id !== id);
-    this.dataSource = new MatTableDataSource(this.festList)
+    this.dataSource = new MatTableDataSource(this.festList);
     this.festivalService.deleteFestival(id)
       .subscribe();
   }
@@ -54,7 +63,17 @@ export class OrgFestComponent implements OnInit {
     console.log('Je suis la colonne appuyée');
   }
 
-  addFest() {
-    console.log('Je veux ajouter un festival');
+  openDialog() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(NewFestDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.log('Dialog output: ', data)
+    );
   }
 }
