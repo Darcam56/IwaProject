@@ -18,7 +18,7 @@ export class StageDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data) {
 
     this.form = fb.group({
-      stageName: [data.festName]
+      stageName: [data.stageName]
     });
 
     this.title = data.title;

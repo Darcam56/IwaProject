@@ -14,19 +14,19 @@ const httpOptions = {
 })
 export class StageService {
 
-  private festsUrl = 'http://localhost:8080/stages';
+  private stagesUrl = 'http://localhost:8080/stages';
 
   constructor(private http: HttpClient) {
   }
 
   /** GET: get stages from the server  */
   getStages(): Observable<Stage[]> {
-    return this.http.get<Stage[]>(this.festsUrl);
+    return this.http.get<Stage[]>(this.stagesUrl);
   }
 
   /** GET: get stage by id. 404 if not found */
   getStage(id: number): Observable<Stage> {
-    const url = `${this.festsUrl}/${id}`;
+    const url = `${this.stagesUrl}/${id}`;
     return this.http.get<Stage>(url).pipe(
       tap(_ => this.log(`fetched stage id=${id}`)),
       catchError(this.handleError<Stage>(`getStage id=${id}`))
@@ -35,7 +35,7 @@ export class StageService {
 
   /** GET: get Concerts Stage by id. 404 if not found */
   getConcerts(id: number): Observable<Concert[]> {
-    const url = `${this.festsUrl}/${id}/concerts`;
+    const url = `${this.stagesUrl}/${id}/concerts`;
     return this.http.get<Concert[]>(url).pipe(
       tap(_ => this.log(`fetched concerts id=${id}`)),
       catchError(this.handleError<Concert[]>(`getConcerts id=${id}`))
@@ -44,7 +44,7 @@ export class StageService {
 
   /** POST: add a new stage to the server */
   addConcertInStage(id: number, concert: Concert): Observable<Concert> {
-    const url = `${this.festsUrl}/${id}/concerts`;
+    const url = `${this.stagesUrl}/${id}/concerts`;
     return this.http.post<Concert>(url, concert, httpOptions).pipe(
       tap((concertAdded: Concert) => this.log(`added stage id=${concertAdded.id}`)),
       catchError(this.handleError<Concert>(`addConcert`))
@@ -54,13 +54,12 @@ export class StageService {
   /** PATCH: update a part of a stage on the server */
   partialUpdateStage(stage: Stage | number, changesMap: Map<string, string>): Observable<any> {
     const id = typeof stage === 'number' ? stage : stage.id;
-    const url = `${this.festsUrl}/${id}`;
+    const url = `${this.stagesUrl}/${id}`;
 
     const body = {};
     for (const [key, value] of changesMap) {
       body[key] = value;
     }
-
     return this.http.patch(url, body, httpOptions).pipe(
       tap(_ => this.log(`updated stage id=${id}`)),
       catchError(this.handleError<any>(`partialUpdateStage`))
@@ -70,7 +69,7 @@ export class StageService {
   /** DELETE: delete the stage from the server */
   deleteStage(stage: Stage | number): Observable<Stage> {
     const id = typeof stage === 'number' ? stage : stage.id;
-    const url = `${this.festsUrl}/${id}`;
+    const url = `${this.stagesUrl}/${id}`;
 
     return this.http.delete<Stage>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted stage id=${id}`)),
@@ -80,7 +79,7 @@ export class StageService {
 
   /** DELETE : Delete all the stages */
   deleteAllStages(): Observable<any> {
-    return this.http.delete(this.festsUrl, httpOptions).pipe(
+    return this.http.delete(this.stagesUrl, httpOptions).pipe(
       tap(_ => this.log(`deleted stages`)),
       catchError(this.handleError<any>(`deleteAllStage`))
     );

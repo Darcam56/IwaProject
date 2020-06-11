@@ -9,7 +9,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 import {StageService} from '../services/stage.service';
-import {FestDialogComponent} from '../fest-dialog/fest-dialog.component';
+import {StageDialogComponent} from '../stage-dialog/stage-dialog.component';
 
 @Component({
   selector: 'app-org-stage',
@@ -94,7 +94,7 @@ export class OrgStageComponent implements OnInit {
       stageName: ''
     };
 
-    const dialogRefNew = this.dialog.open(FestDialogComponent, dialogConfigNew);
+    const dialogRefNew = this.dialog.open(StageDialogComponent, dialogConfigNew);
 
     dialogRefNew.afterClosed().subscribe(
       data => {
@@ -116,15 +116,15 @@ export class OrgStageComponent implements OnInit {
       stageName: stage.name
     };
 
-    const dialogRefModif = this.dialog.open(FestDialogComponent, dialogConfigModif);
+    const dialogRefModif = this.dialog.open(StageDialogComponent, dialogConfigModif);
 
     dialogRefModif.afterClosed().subscribe(
       data => {
         if (data){
           const changesMap = new Map<string, string>();
-          if (data.stageName !== '') { changesMap.set('name', data.festivalName); }
+          if (data.stageName !== '') { changesMap.set('name', data.stageName); }
 
-          this.festivalService.partialUpdateFestival(stage.id, changesMap)
+          this.stageService.partialUpdateStage(stage.id, changesMap)
             .subscribe(_ => this.getStages());
         }
       });
