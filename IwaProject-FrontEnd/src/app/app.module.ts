@@ -16,7 +16,7 @@ import { BandConcertsComponent } from './band-concerts/band-concerts.component';
 import { SpecFestivalsComponent } from './spec-festivals/spec-festivals.component';
 import { SpecOwnFestivalsComponent } from './spec-own-festivals/spec-own-festivals.component';
 import { OrgFestComponent } from './org-fest/org-fest.component';
-import { NewFestDialogComponent } from './new-fest-dialog/new-fest-dialog.component';
+import { FestDialogComponent } from './fest-dialog/fest-dialog.component';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { NewFestDialogComponent } from './new-fest-dialog/new-fest-dialog.compon
     SpecFestivalsComponent,
     SpecOwnFestivalsComponent,
     OrgFestComponent,
-    NewFestDialogComponent
+    FestDialogComponent
   ],
   imports: [
     BrowserModule,

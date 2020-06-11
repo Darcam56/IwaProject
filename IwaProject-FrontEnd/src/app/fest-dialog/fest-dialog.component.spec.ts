@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewFestDialogComponent } from './new-fest-dialog.component';
+import { NewFestDialogComponent } from './fest-dialog.component';
 
 describe('NewFestDialogComponent', () => {
   let component: NewFestDialogComponent;

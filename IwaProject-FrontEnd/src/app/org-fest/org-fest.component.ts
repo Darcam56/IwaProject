@@ -6,7 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {OrganiserService} from '../services/org.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import {FormGroup} from '@angular/forms';
-import {NewFestDialogComponent} from '../new-fest-dialog/new-fest-dialog.component';
+import {FestDialogComponent} from '../fest-dialog/fest-dialog.component';
 
 export interface DialogData {
   festname: string;
@@ -69,8 +69,13 @@ export class OrgFestComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: 'Festival registration',
+      festName: '',
+      desc: ''
+    };
 
-    const dialogRef = this.dialog.open(NewFestDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(FestDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
       data => console.log('Dialog output: ', data)
