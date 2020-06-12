@@ -5,10 +5,10 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {BandConcertsComponent} from './band-concerts/band-concerts.component';
-import {SpecFestivalsComponent} from './spec-festivals/spec-festivals.component';
-import {SpecOwnFestivalsComponent} from './spec-own-festivals/spec-own-festivals.component';
-import {OrgFestComponent} from './org-fest/org-fest.component';
-import {OrgStageComponent} from './org-stage/org-stage.component';
+import {SpecFestivalsComponent} from './spectator-views/spec-festivals/spec-festivals.component';
+import {SpecOwnFestivalsComponent} from './spectator-views/spec-own-festivals/spec-own-festivals.component';
+import {OrgFestComponent} from './organiser-views/org-fest/org-fest.component';
+import {OrgStageComponent} from './organiser-views/org-stage/org-stage.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

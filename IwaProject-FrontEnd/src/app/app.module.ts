@@ -13,13 +13,13 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import { BandConcertsComponent } from './band-concerts/band-concerts.component';
-import { SpecFestivalsComponent } from './spec-festivals/spec-festivals.component';
-import { SpecOwnFestivalsComponent } from './spec-own-festivals/spec-own-festivals.component';
-import { OrgFestComponent } from './org-fest/org-fest.component';
-import { FestDialogComponent } from './fest-dialog/fest-dialog.component';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { OrgStageComponent } from './org-stage/org-stage.component';
-import { StageDialogComponent } from './stage-dialog/stage-dialog.component';
+import { SpecFestivalsComponent } from './spectator-views/spec-festivals/spec-festivals.component';
+import { SpecOwnFestivalsComponent } from './spectator-views/spec-own-festivals/spec-own-festivals.component';
+import { OrgFestComponent } from './organiser-views/org-fest/org-fest.component';
+import { FestDialogComponent } from './dialogs/fest-dialog/fest-dialog.component';
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
+import { OrgStageComponent } from './organiser-views/org-stage/org-stage.component';
+import { StageDialogComponent } from './dialogs/stage-dialog/stage-dialog.component';
 
 
 @NgModule({

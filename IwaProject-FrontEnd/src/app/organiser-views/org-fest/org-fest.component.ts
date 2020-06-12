@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {TokenStorageService} from '../auth/token-storage.service';
-import {Festival} from '../models/festival.model';
-import {FestivalService} from '../services/festival.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
+import {Festival} from '../../models/festival.model';
+import {FestivalService} from '../../services/festival.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {OrganiserService} from '../services/org.service';
+import {OrganiserService} from '../../services/org.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {FormGroup} from '@angular/forms';
-import {FestDialogComponent} from '../fest-dialog/fest-dialog.component';
-import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
+import {FestDialogComponent} from '../../dialogs/fest-dialog/fest-dialog.component';
+import {ConfirmationDialogComponent} from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 import {Router} from '@angular/router';
 
 @Component({

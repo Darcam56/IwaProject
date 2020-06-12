@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TokenStorageService} from '../auth/token-storage.service';
-import {Festival} from '../models/festival.model';
-import {SpecService} from '../services/spec.service';
-import {FestivalService} from '../services/festival.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
+import {Festival} from '../../models/festival.model';
+import {SpecService} from '../../services/spec.service';
+import {FestivalService} from '../../services/festival.service';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({

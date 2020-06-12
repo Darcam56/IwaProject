@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Festival} from '../models/festival.model';
+import {Festival} from '../../models/festival.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {FormGroup} from '@angular/forms';
-import {Stage} from '../models/stage.model';
-import {FestivalService} from '../services/festival.service';
-import {TokenStorageService} from '../auth/token-storage.service';
+import {Stage} from '../../models/stage.model';
+import {FestivalService} from '../../services/festival.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
-import {StageService} from '../services/stage.service';
-import {StageDialogComponent} from '../stage-dialog/stage-dialog.component';
+import {ConfirmationDialogComponent} from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
+import {StageService} from '../../services/stage.service';
+import {StageDialogComponent} from '../../dialogs/stage-dialog/stage-dialog.component';
 
 @Component({
   selector: 'app-org-stage',

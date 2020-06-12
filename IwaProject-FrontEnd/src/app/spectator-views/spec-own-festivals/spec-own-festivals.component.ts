@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Festival} from '../models/festival.model';
-import {SpecService} from '../services/spec.service';
-import {TokenStorageService} from '../auth/token-storage.service';
+import {Festival} from '../../models/festival.model';
+import {SpecService} from '../../services/spec.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-spec-own-festivals',
