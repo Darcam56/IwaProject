@@ -15,7 +15,7 @@
   <!-- Cancel Column -->
   <ng-container matColumnDef="Cancel">
     <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let fest">
+    <td mat-cell *matCellDef="let fest" align="right">
       <button mat-mini-fab color="warn" (click)="delFest(fest.id)" aria-label="remove button">
         <mat-icon>close</mat-icon>
       </button>

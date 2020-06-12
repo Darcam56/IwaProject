@@ -20,6 +20,7 @@ import { FestDialogComponent } from './dialogs/fest-dialog/fest-dialog.component
 import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 import { OrgStageComponent } from './organiser-views/org-stage/org-stage.component';
 import { StageDialogComponent } from './dialogs/stage-dialog/stage-dialog.component';
+import { OrgConcertComponent } from './organiser-views/org-concert/org-concert.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { StageDialogComponent } from './dialogs/stage-dialog/stage-dialog.compon
     FestDialogComponent,
     ConfirmationDialogComponent,
     OrgStageComponent,
-    StageDialogComponent
+    StageDialogComponent,
+    OrgConcertComponent
   ],
   imports: [
     BrowserModule,
