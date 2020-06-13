@@ -2,13 +2,13 @@ package com.example.iwaproject.restControllers;
 
 import com.example.iwaproject.model.*;
 import com.example.iwaproject.repositories.ConcertRepository;
-import com.example.iwaproject.repositories.RoleRepository;
 import com.example.iwaproject.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -18,14 +18,14 @@ public class BandRESTController {
 
     private UserRepository userRepository;
     private ConcertRepository concertRepository;
-    private RoleRepository roleRepository;
+    private ConcertRESTController concertRESTController;
     
     @Autowired
     public BandRESTController(UserRepository userRepository, ConcertRepository concertRepository,
-                              RoleRepository roleRepository){
+                              ConcertRESTController concertRESTController){
         this.userRepository = userRepository;
         this.concertRepository = concertRepository;
-        this.roleRepository = roleRepository;
+        this.concertRESTController = concertRESTController;
     }
 
     @GetMapping
@@ -34,6 +34,18 @@ public class BandRESTController {
         ArrayList<User> tmp = (ArrayList<User>) userRepository.findAll();
         for (User user: tmp){
             if (user instanceof Band){
+                res.add((Band) user);
+            }
+        }
+        return res;
+    }
+
+    @GetMapping("/free")
+    public List<Band> findAllFreeBands(@RequestBody LocalDateTime date){
+        ArrayList<Band> res = new ArrayList<>();
+        ArrayList<User> tmp = (ArrayList<User>) userRepository.findAll();
+        for (User user: tmp){
+            if (user instanceof Band && concertRESTController.bandIsFree(date, (Band) user)){
                 res.add((Band) user);
             }
         }

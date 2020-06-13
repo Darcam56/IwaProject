@@ -135,7 +135,7 @@ public class ConcertRESTController {
         return true;
     }
 
-    private boolean bandIsFree(LocalDateTime newDate, Band band) {
+    public boolean bandIsFree(LocalDateTime newDate, Band band) {
         if (band == null) { return true; }
         for (Concert con: band.getConcerts()){
             if(con.getStart().toLocalDate().equals(newDate.toLocalDate())){
