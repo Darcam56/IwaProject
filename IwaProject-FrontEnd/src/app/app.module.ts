@@ -21,6 +21,8 @@ import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confi
 import { OrgStageComponent } from './organiser-views/org-stage/org-stage.component';
 import { StageDialogComponent } from './dialogs/stage-dialog/stage-dialog.component';
 import { OrgConcertComponent } from './organiser-views/org-concert/org-concert.component';
+import { ConcertDialogComponent } from './dialogs/concert-dialog/concert-dialog.component';
+import {DatePipe} from '@angular/common';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { OrgConcertComponent } from './organiser-views/org-concert/org-concert.c
     ConfirmationDialogComponent,
     OrgStageComponent,
     StageDialogComponent,
-    OrgConcertComponent
+    OrgConcertComponent,
+    ConcertDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { OrgConcertComponent } from './organiser-views/org-concert/org-concert.c
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

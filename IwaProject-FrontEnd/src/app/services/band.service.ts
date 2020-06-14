@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Band} from '../models/band.model';
@@ -30,6 +30,12 @@ export class BandService {
       tap(_ => this.log(`fetched contact id=${id}`)),
       catchError(this.handleError<Band>(`getContact id=${id}`))
     );
+  }
+
+  /** GET: get all the bands witch are free for the date */
+  getFreeBands(date: string): Observable<Band[]> {
+    const url = `${this.bandsUrl}/free/${date}`;
+    return this.http.get<Band[]>(url);
   }
 
   /** GET: get concerts band by id. 404 if not found */
@@ -94,4 +100,5 @@ export class BandService {
   private log(message: string){
     console.log('BandService: ' + message);
   }
+
 }

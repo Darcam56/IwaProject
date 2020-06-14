@@ -81,7 +81,9 @@ export class OrgStageComponent implements OnInit {
   }
 
   lookStageConcerts(stage: Stage) {
-    console.log('look concerts : ' + stage.name);
+    const route = this.router.config.find(r => r.path === 'orgConcert/:id');
+    route.data =  stage;
+    this.router.navigate(['orgConcert/' + stage.id]);
   }
 
   openDialogNew() {

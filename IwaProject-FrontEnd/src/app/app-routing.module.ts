@@ -9,6 +9,7 @@ import {SpecFestivalsComponent} from './spectator-views/spec-festivals/spec-fest
 import {SpecOwnFestivalsComponent} from './spectator-views/spec-own-festivals/spec-own-festivals.component';
 import {OrgFestComponent} from './organiser-views/org-fest/org-fest.component';
 import {OrgStageComponent} from './organiser-views/org-stage/org-stage.component';
+import {OrgConcertComponent} from './organiser-views/org-concert/org-concert.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'specOwnFest', component: SpecOwnFestivalsComponent },
   { path: 'orgFest', component: OrgFestComponent },
   { path: 'orgStage/:id', component: OrgStageComponent },
+  { path: 'orgConcert/:id', component: OrgConcertComponent },
   { path: 'signup', component: RegisterComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

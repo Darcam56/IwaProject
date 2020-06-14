@@ -8,8 +8,7 @@ export class Concert{
   band: Band;
   stage: Stage;
 
-  constructor(id: number, start: Date, duration: Date) {
-    this.id =  id;
+  constructor(start: Date, duration: Date) {
     this.start =  start;
     this.duration =  duration;
   }

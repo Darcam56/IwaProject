@@ -17,75 +17,67 @@ export class ConcertService {
 
   constructor(private http: HttpClient) { }
 
-  /** GET: get contacts from the server  */
-  getContacts(): Observable<Concert[]> {
+  /** GET: get concerts from the server  */
+  getConcerts(): Observable<Concert[]> {
     return this.http.get<Concert[]>(this.concertsUrl);
   }
 
-  /** GET: get contact by id. 404 if not found */
-  getContact(id: number): Observable<Concert> {
+  /** GET: get concert by id. 404 if not found */
+  getConcert(id: number): Observable<Concert> {
     const url = `${this.concertsUrl}/${id}`;
     return this.http.get<Concert>(url).pipe(
-      tap(_ => this.log(`fetched contact id=${id}`)),
-      catchError(this.handleError<Concert>(`getContact id=${id}`))
+      tap(_ => this.log(`fetched concert id=${id}`)),
+      catchError(this.handleError<Concert>(`getConcert id=${id}`))
     );
   }
 
-  /** PUT: update the contact on the server */
-  updateContact(contact: Concert): Observable<any> {
-    const url = `${this.concertsUrl}/${contact.id}`;
-    return this.http.put(url, contact, httpOptions).pipe(
-      tap(_ => this.log(`updated contact id=${contact.id}`)),
-      catchError(this.handleError<any>(`updateContact`))
+  /** PUT: update the concert on the server */
+  updateConcert(concert: Concert): Observable<any> {
+    const url = `${this.concertsUrl}/${concert.id}`;
+    return this.http.put(url, concert, httpOptions).pipe(
+      tap(_ => this.log(`updated concert id=${concert.id}`)),
+      catchError(this.handleError<any>(`updateConcert`))
     );
   }
 
-  /** PUT: update all the contacts on the server */
-  updateContacts(putContactList: Concert[]): Observable<any> {
-    return this.http.put(this.concertsUrl , putContactList, httpOptions).pipe(
-      tap(_ => this.log(`updated contacts`)),
-      catchError(this.handleError<any>(`updateContacts`))
+  /** PUT: update all the concerts on the server */
+  updateConcerts(putConcertList: Concert[]): Observable<any> {
+    return this.http.put(this.concertsUrl , putConcertList, httpOptions).pipe(
+      tap(_ => this.log(`updated concerts`)),
+      catchError(this.handleError<any>(`updateConcerts`))
     );
   }
 
-  /** POST: add a new contact to the server */
-  addContact(contact: Concert): Observable<Concert> {
-    return this.http.post<Concert>(this.concertsUrl, contact, httpOptions).pipe(
-      tap((contactAdded: Concert) => this.log(`added contact id=${contactAdded.id}`)),
-      catchError(this.handleError<Concert>(`addContact`))
-    );
-  }
-
-  /** PATCH: update a part of a contact on the server */
-  partialUpdateContact(contact: Concert | number, changesMap: Map<string, string>): Observable<any> {
-    const id = typeof contact === 'number' ? contact : contact.id;
+  /** PATCH: update a part of a concert on the server */
+  partialUpdateConcert(concert: Concert | number, changesMap: Map<string, string>): Observable<any> {
+    const id = typeof concert === 'number' ? concert : concert.id;
     const url = `${this.concertsUrl}/${id}`;
 
     const body = {};
     for (const [key, value] of changesMap) { body[key] = value; }
 
     return this.http.patch(url, body, httpOptions).pipe(
-      tap(_ => this.log(`updated contact id=${id}`)),
-      catchError(this.handleError<any>(`partialUpdateContact`))
+      tap(_ => this.log(`updated concert id=${id}`)),
+      catchError(this.handleError<any>(`partialUpdateConcert`))
     );
   }
 
-  /** DELETE: delete the contact from the server */
-  deleteContact(contact: Concert | number): Observable<Concert> {
-    const id = typeof contact === 'number' ? contact : contact.id;
+  /** DELETE: delete the concert from the server */
+  deleteConcert(concert: Concert | number): Observable<Concert> {
+    const id = typeof concert === 'number' ? concert : concert.id;
     const url = `${this.concertsUrl}/${id}`;
 
     return this.http.delete<Concert>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted contact id=${id}`)),
-      catchError(this.handleError<Concert>(`deleteContact`))
+      tap(_ => this.log(`deleted concert id=${id}`)),
+      catchError(this.handleError<Concert>(`deleteConcert`))
     );
   }
 
-  /** DELETE : Delete all the contacts */
-  deleteAllContacts(): Observable<any> {
+  /** DELETE : Delete all the concerts */
+  deleteAllConcerts(): Observable<any> {
     return this.http.delete(this.concertsUrl, httpOptions).pipe(
-      tap(_ => this.log(`deleted contacts`)),
-      catchError(this.handleError<any>(`deleteAllContact`))
+      tap(_ => this.log(`deleted concerts`)),
+      catchError(this.handleError<any>(`deleteAllConcert`))
     );
   }
 
@@ -105,8 +97,8 @@ export class ConcertService {
     };
   }
 
-  /** Log a ContactService message with the message service */
+  /** Log a ConcertService message with the message service */
   private log(message: string){
-    console.log('ContactService: ' + message);
+    console.log('ConcertService: ' + message);
   }
 }
