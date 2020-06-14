@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
@@ -40,8 +43,11 @@ public class BandRESTController {
         return res;
     }
 
-    @GetMapping("/free")
-    public List<Band> findAllFreeBands(@RequestBody LocalDateTime date){
+    @GetMapping("/free/{dateString}")
+    public List<Band> findAllFreeBands(@PathVariable("dateString") String dateString){
+        LocalDateTime date = LocalDateTime.of(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                                              LocalTime.now());
+
         ArrayList<Band> res = new ArrayList<>();
         ArrayList<User> tmp = (ArrayList<User>) userRepository.findAll();
         for (User user: tmp){
