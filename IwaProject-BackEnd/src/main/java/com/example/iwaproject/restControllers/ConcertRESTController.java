@@ -122,7 +122,8 @@ public class ConcertRESTController {
     private boolean partialUpdate(Concert concert, Map<String, Object> updates) {
         if(updates.containsKey("start")){
             LocalDateTime newDate = LocalDateTime.parse((String) updates.get("start"), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
-            if (bandIsFree(newDate, concert.getBand())){
+
+            if (newDate.toLocalDate().equals(concert.getStart().toLocalDate()) || bandIsFree(newDate, concert.getBand())){
                 concert.setStart(newDate);
             }else{
                 return false;
@@ -130,6 +131,13 @@ public class ConcertRESTController {
         }if(updates.containsKey("duration")){
             LocalTime newDuration = LocalTime.parse((String) updates.get("duration"), DateTimeFormatter.ofPattern("HH:mm"));
             concert.setDuration(newDuration);
+        }if(updates.containsKey("band")){
+            Band newBand = (Band) userRepository.findById(Long.parseLong(updates.get("band").toString()));
+            Band lastBand = concert.getBand();
+            lastBand.removeConcert(concert);
+            concert.setBand(newBand);
+            userRepository.save(lastBand);
+            userRepository.save(newBand);
         }
         concertRepository.save(concert);
         return true;
