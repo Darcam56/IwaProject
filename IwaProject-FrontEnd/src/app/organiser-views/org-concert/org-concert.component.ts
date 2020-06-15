@@ -122,6 +122,7 @@ export class OrgConcertComponent implements OnInit {
               this.stageService.getConcerts(this.stage.id)
                   .subscribe(concerts => {
                     this.concertService.linkConcertToBand(concerts[concerts.length - 1].id, data.bandId)
+                      // tslint:disable-next-line:no-shadowed-variable
                       .subscribe(_ => this.getConcerts());
                   });
             });
@@ -155,7 +156,6 @@ export class OrgConcertComponent implements OnInit {
             const stringDate = (data.startDate.toLocaleString().slice(0, 11) +
                                 data.startDate.toLocaleString().slice(13, 18))
                                 .replace(/\//g, '-');
-            console.log(stringDate);
             changesMap.set('start', stringDate);
           }
           if (data.duration !== ''){

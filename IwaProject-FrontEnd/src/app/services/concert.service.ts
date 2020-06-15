@@ -65,8 +65,6 @@ export class ConcertService {
     const body = {};
     for (const [key, value] of changesMap) { body[key] = value; }
 
-    console.log(body);
-
     return this.http.patch(url, body, httpOptions).pipe(
       tap(_ => this.log(`updated concert id=${id}`)),
       catchError(this.handleError<any>(`partialUpdateConcert`))
