@@ -37,7 +37,6 @@ export class SpecFestivalsComponent implements OnInit {
       .subscribe(festList => {
         this.festList = festList;
         this.dataSource = new MatTableDataSource(this.festList);
-        console.log(this.festList);
       });
   }
 

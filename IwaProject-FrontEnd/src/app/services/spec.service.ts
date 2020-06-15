@@ -46,8 +46,8 @@ export class SpecService {
   /** POST: link a festival and an spectator to the server */
   linkSpecToFestival(username: string, festId: number): Observable<Spectator> {
     const url = `${this.specsUrl}/${username}/festivals/${festId}`;
-    return this.http.post(url, httpOptions).pipe(
-      tap((spectatorAdded: Spectator) => this.log(`added spec id=${spectatorAdded.id}`)),
+    return this.http.post<Spectator>(url, httpOptions).pipe(
+      tap(_ => this.log(`Link spec to a fest`)),
       catchError(this.handleError<Spectator>(`linkSpecToFestival`))
     );
   }
@@ -86,11 +86,11 @@ export class SpecService {
   }
 
   /** DELETE: Delete the link between a festival and an spectator to the server */
-  unlinkSpecToFestival(username: string, festId: number): Observable<Spectator> {
+  unlinkSpecToFestival(username: string, festId: number): Observable<any> {
     const url = `${this.specsUrl}/${username}/festivals/${festId}`;
     return this.http.delete(url, httpOptions).pipe(
-      tap((spectatorAdded: Spectator) => this.log(`added spec id=${spectatorAdded.id}`)),
-      catchError(this.handleError<Spectator>(`unlinkSpecToFestival`))
+      tap(_ => this.log(`Link spec to a fest`)),
+      catchError(this.handleError<any>(`unlinkSpecToFestival`))
     );
   }
 
