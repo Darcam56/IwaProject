@@ -15,6 +15,7 @@ export class ConcertDialogComponent implements OnInit {
   form: FormGroup;
   title: string;
   bands: Band[];
+  selectedBand: number;
 
   constructor(
     private bandService: BandService,
@@ -27,14 +28,14 @@ export class ConcertDialogComponent implements OnInit {
       const stringSlicedData = data.start.slice(6, 10) + '/' + data.start.slice(3, 5) + '/' + data.start.slice(0, 2);
 
       this.form = fb.group({
-        bandName: [data.bandName],
+        bandId: [data.bandId],
         startDate: [new Date(stringSlicedData)],
-        startTime: [data.start.slice(12, 16)],
+        startTime: [data.start.slice(11, 16)],
         duration: [data.duration]
       });
     } else {
       this.form = fb.group({
-        bandName: [],
+        bandId: [],
         startDate: [],
         startTime: [],
         duration: []
@@ -67,8 +68,8 @@ export class ConcertDialogComponent implements OnInit {
     this.bandService.getFreeBands(dateString)
       .subscribe(bands => {
          this.bands = bands;
-         console.log(bands);
       });
   }
 
+  selectBand(id: number){ this.selectedBand = id; }
 }

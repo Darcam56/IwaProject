@@ -1,0 +1,20 @@
+table{
+  width: calc(100% - 4rem);;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+mat-form-field, .addButton{
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.bntAction2{
+  margin-left: 1rem;
+}
+
+.btnHome{
+  position: absolute;
+  right: 2rem;
+  margin-top: 1rem;
+}

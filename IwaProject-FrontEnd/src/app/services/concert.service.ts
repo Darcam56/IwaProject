@@ -31,6 +31,15 @@ export class ConcertService {
     );
   }
 
+  /** POST: link a concert to a Band bi Ids */
+  linkConcertToBand(idC: number, idB: number): Observable<any> {
+    const url = `${this.concertsUrl}/${idC}/band/${idB}`;
+    return this.http.post(url, null).pipe(
+      tap(_ => this.log(`linked concert (${idC}) with band (${idB})`)),
+      catchError(this.handleError<any>(`linkConcertToBand`))
+    );
+  }
+
   /** PUT: update the concert on the server */
   updateConcert(concert: Concert): Observable<any> {
     const url = `${this.concertsUrl}/${concert.id}`;
@@ -55,6 +64,8 @@ export class ConcertService {
 
     const body = {};
     for (const [key, value] of changesMap) { body[key] = value; }
+
+    console.log(body);
 
     return this.http.patch(url, body, httpOptions).pipe(
       tap(_ => this.log(`updated concert id=${id}`)),

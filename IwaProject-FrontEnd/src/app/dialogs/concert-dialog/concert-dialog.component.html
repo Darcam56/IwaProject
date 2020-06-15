@@ -14,8 +14,8 @@
   <br>
   <mat-form-field>
     <mat-label>Band</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let band of bands" [value]="band.id">
+    <mat-select formControlName="bandId">
+      <mat-option *ngFor="let band of bands" [value]="band.id" (onSelectionChange)="selectBand(band.id)">
         {{band.name}}
       </mat-option>
     </mat-select>
